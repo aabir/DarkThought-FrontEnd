@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ThoughtService from "../services/ThoughtService";
 
 
@@ -7,19 +7,11 @@ const ListThought = props => {
     const { id } = useParams()
     let navigation = useNavigate()
 
-    const initialThoughtState = {
-        id: null,
-        title: "",
-        content: "",
-        publish: false
-    }
-
-    const [thoughts, setThoughts] = useState(initialThoughtState)
-    const [message, setMessage] = useState("")
-
     useEffect(() => {
         getThought()
     }, [])
+
+    const [thoughts, setThoughts] = useState([])
 
     const getThought = () => {
         ThoughtService.getAll()
@@ -31,17 +23,35 @@ const ListThought = props => {
                 console.log(e)
             })
     }
-    console.log(thoughts)
+
     return(
-        <div className="list row">
-            <div className="col-md-6">
-                <h4>Thought</h4>
-                <ul className="list-group">
-                    {thoughts && thoughts.map(thought => (
-                        <li>{thought.title}</li>
+        <div className="row">
+            <h4>Thoughts</h4>
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <td scope="col">Title</td>
+                        <td scope="col">Content</td>
+                        <td scope="col">Edit</td>
+                        <td scope="col">Delete</td>
+                        <td scope="col">Status</td>
+                    </tr>
+                </thead>
+                <tbody>
+                        
+                    {thoughts &&
+                    thoughts.map((thought, index) => (
+                        <tr key={thought.id}>
+                            <td>{thought.title}</td>
+                            <td>{thought.content}</td>
+                            <td><Link to={"/thought/" + thought.id}>Edit</Link></td>
+                            <td>{thought.id}</td>
+                            <td>{thought.publish ? "Published" : "Unpublish"}</td>
+                        </tr>
                     ))}
-                </ul>
-            </div>
+                
+                </tbody>
+            </table>
         </div>
     )
 }
