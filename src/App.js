@@ -4,6 +4,7 @@ import "./App.css"
 import AddThought from "./components/AddThought"
 import ListThought from "./components/ListThought"
 import { Link, Router, Route, Routes } from "react-router-dom"
+import DetailThought from "./components/DetailThought";
 
 function App() {
   return (
@@ -29,8 +30,14 @@ function App() {
           <Routes>
             <Route path="/" element={<ListThought/>} />
             <Route path="/thought" element={<ListThought/>} />
-            
             <Route path="/add" element={<AddThought/>} />
+            <Route path="/detail-thought/:id" element={<DetailThought/>} />
+            <Route path="*" element={
+              <main style={{padding: "1rem"}}>
+                <p>404 not found.</p>
+              </main>
+            }
+            />
           </Routes>
       </div>
     </div>
