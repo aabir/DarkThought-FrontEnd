@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ThoughtService from "../services/ThoughtService";
+import { formatDate } from "../Utlis";
 
 
 const ListThought = props => {
-    const { id } = useParams()
-    let navigate = useNavigate()
-
+    
     useEffect(() => {
         getThought()
     }, [])
@@ -17,7 +16,7 @@ const ListThought = props => {
         ThoughtService.getAll()
             .then(res => {
                 setThoughts(res.data)
-                console.log(res.data)
+                //console.log(res.data)
             })
             .catch(e => {
                 console.log(e)
@@ -62,7 +61,7 @@ const ListThought = props => {
                             <td>{thought.content}</td>
                             <td><Link to={`/detail-thought/${thought.id}`} className="btn link">Edit</Link></td>
                             <td><button className="btn link" onClick={(e) => handleDelete(thought.id, e)}>Delete</button></td>
-                            <td>{thought.createdAt}</td>
+                            <td>{formatDate(thought.createdAt)}</td>
                             <td>{thought.publish ? "Published" : "Unpublish"}</td>
                         </tr>
                     ))}
