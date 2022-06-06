@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ThoughtService from "../services/ThoughtService";
-import { Alert } from "bootstrap";
 
 
 const ListThought = props => {
@@ -13,7 +12,6 @@ const ListThought = props => {
     }, [])
 
     const [thoughts, setThoughts] = useState([])
-    const [message, setMessage] = useState("")
 
     const getThought = () => {
         ThoughtService.getAll()
