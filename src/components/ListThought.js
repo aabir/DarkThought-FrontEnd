@@ -59,8 +59,8 @@ const ListThought = props => {
                         <tr key={thought.id}>
                             <td>{thought.title}</td>
                             <td>{thought.content}</td>
-                            <td><Link to={`/detail-thought/${thought.id}`} className="btn link">Edit</Link></td>
-                            <td><button className="btn link" onClick={(e) => handleDelete(thought.id, e)}>Delete</button></td>
+                            <td><Link to={`/detail-thought/${thought.id}`} className="link-info">Edit</Link></td>
+                            <td><a className="link-danger" onClick={(e) => handleDelete(thought.id, e)}>Delete</a></td>
                             <td>{formatDate(thought.createdAt)}</td>
                             <td>{thought.publish ? "Published" : "Unpublish"}</td>
                         </tr>

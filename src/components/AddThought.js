@@ -58,7 +58,7 @@ const AddThought = () => {
                     Add
                     </button>
                 </div>
-            ): (
+            ) : (
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="title">Title</label>

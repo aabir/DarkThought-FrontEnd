@@ -45,7 +45,7 @@ const DetailThought = props => {
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log(currentThought)
+        //console.log(currentThought)
         ThoughtService.update(currentThought)
             .then(res => {
                 if(res.status == 200){
@@ -122,7 +122,7 @@ const DetailThought = props => {
             ) : (
                 <div>
                     <br />
-                    <p>Please click on a Tutorial...</p>
+                    <p>Something went wrong!</p>
                 </div>
             )}
         </div>
