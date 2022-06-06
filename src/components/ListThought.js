@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ThoughtService from "../services/ThoughtService";
+import { Alert } from "bootstrap";
 
 
 const ListThought = props => {
@@ -26,7 +27,9 @@ const ListThought = props => {
     }
 
     function handleDelete(id, event){
-        ThoughtService.remove(id)
+        let confirm = window.confirm("Are you sure?")
+        if(confirm === true){
+            ThoughtService.remove(id)
             .then(res => {
                 if(res.status === 200){
                     getThought()
@@ -35,6 +38,7 @@ const ListThought = props => {
             .catch(e => {
                 console.log(e)
             })
+        }
     }
 
     return(
