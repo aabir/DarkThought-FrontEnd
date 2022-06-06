@@ -13,7 +13,7 @@ const DetailThought = props => {
     }
     
     const [currentThought, setCurrentThought] = useState(initialThoughtSate)
-    const [message, setMessage] = useState("")
+    const [message, setMessage] = useState(false)
 
     const getThought = id => {
         ThoughtService.getById(id)
@@ -49,7 +49,7 @@ const DetailThought = props => {
         ThoughtService.update(currentThought)
             .then(res => {
                 if(res.status == 200){
-                    setMessage("The tutorial was updated successfully!")
+                    setMessage(true)
                 }
                 console.log(res.data)
             })
@@ -60,6 +60,12 @@ const DetailThought = props => {
         
     return (
         <div>
+            {message && (
+                <div>
+                    <h4>Updated successfully!</h4>
+                </div>
+            )}
+
             {currentThought ? (
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
