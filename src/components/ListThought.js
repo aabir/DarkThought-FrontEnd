@@ -15,8 +15,8 @@ const ListThought = props => {
     const getThought = () => {
         ThoughtService.getAll()
             .then(res => {
-                setThoughts(res.data)
-                //console.log(res.data)
+                setThoughts(res.data.data)
+                //console.log(res.data.data)
             })
             .catch(e => {
                 console.log(e)
